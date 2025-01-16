@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * The class WeatherPatterns finds the longest span of days in which
  * each day’s temperature is higher than on the previous day in that sequence.
@@ -20,6 +22,8 @@ public class WeatherPatterns {
         // Set the run length of the first index to 1
         runs[0] = 1;
         int maxRun = 1;
+//        ArrayList<int[]> temps = new ArrayList<>();
+//        temps.add(new int[2]);
         for (int i = 1; i < size; i++) {
             int max = 0;
             // Loop through each index before the current one
