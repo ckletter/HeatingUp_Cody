@@ -1,10 +1,11 @@
 Name: Cody Kletter
 
-| Date   |    Time    |                                                                                                                                                                                                                                 Update |
-|:-------|:----------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Jan 15 | 12:45-1:15 | I am going about an algorithm of n^2 complexity, which loops through each index before it and finds the max run of a number that it less than the current number. Then simply add one to it. I am running into a bug though right now. |
-| Jan 15 | 1:15-1:45  |                                                                                       I was able to pass all the checks! I was dealing with a bug, but my issue came from breaking early in my for loop instead of writing 'continue.' |
-| Jan 15 | 4:30-5:00  |                                                                     I brainstormed for 30 minutes speedups to my solution that could lower the n^2 complexity, including arraylists and maps but I wasn't able to think of a solution. |
+| Date   |    Time    |                                                                                                                                                                                                                                                                                                          Update |
+|:-------|:----------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Jan 15 | 12:45-1:15 |                                                                          I am going about an algorithm of n^2 complexity, which loops through each index before it and finds the max run of a number that it less than the current number. Then simply add one to it. I am running into a bug though right now. |
+| Jan 15 | 1:15-1:45  |                                                                                                                                                                I was able to pass all the checks! I was dealing with a bug, but my issue came from breaking early in my for loop instead of writing 'continue.' |
+| Jan 15 | 4:30-5:00  |                                                                                                                                              I brainstormed for 30 minutes speedups to my solution that could lower the n^2 complexity, including arraylists and maps but I wasn't able to think of a solution. |
+| Jan 19 | 7:45-8:15  | I spent this time coding out the main function, creating my adjacency list in O(n^2) complexity. I also began creating my recursive method, using memoization for a speedup. I need to finish my recursive function and then code the logic in my main method for calling the recursive method for each vertex. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.

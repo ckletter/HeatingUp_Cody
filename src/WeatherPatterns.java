@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -18,31 +19,43 @@ public class WeatherPatterns {
      */
     public static int longestWarmingTrend(int[] temperatures) {
         int size = temperatures.length;
-        int[] runs = new int[size];
-        // Set the run length of the first index to 1
-        runs[0] = 1;
-        int maxRun = 1;
-//        ArrayList<int[]> temps = new ArrayList<>();
-//        temps.add(new int[2]);
+        ArrayList<Integer>[] adjacencyList = new ArrayList<Integer>[size];
+        for (int i = 0; i < size; i++) {
+            adjacencyList[i] = new ArrayList<Integer>();
+        }
+        // For each temp, look through all temps before it
+        // If a temp before it is less than the current temperature, add it to the current temp's adjacency list
         for (int i = 1; i < size; i++) {
-            int max = 0;
-            // Loop through each index before the current one
-            // Find the max run of the indices before
             for (int j = 0; j < i; j++) {
-                // If the current temp is greater than or equal to the temp at i, move past it
-                if (temperatures[j] >= temperatures[i]) {
-                    continue;
-                }
-                // If the current run is greater than the max run, update the max run before current
-                if (runs[j] > max) {
-                    max = runs[j];
+                // If the current temp is less than the temp at i, add the edge to adjacency list
+                if (temperatures[j] < temperatures[i]) {
+                    adjacencyList[i].add(j);
                 }
             }
-            int currentRun = max + 1;
-            runs[i] = currentRun;
-            // Update the total max run of the entire sequence
-            maxRun = Math.max(currentRun, maxRun);
         }
-        return maxRun;
+        int longest = 0;
+        int[] longestPaths = new int[size];
+        // Loop through each temp and recurse to find the longest path to that temp
+        for (int i = 0; i < size; i++) {
+            int longestPathTo = longestPathTo(adjacencyList, i, longestPaths);
+        }
+    }
+    public static int longestPathTo(ArrayList<Integer>[] adjacencyList, int vertex, int[] longestPaths) {
+        // Obtain the connections of the current vertex
+        ArrayList<Integer> connections = adjacencyList[vertex];
+        int len = 0;
+        for (int connectingVertex : connections) {
+            // Check if the longest path to the connecting vertex is already known
+            if (longestPaths[connectingVertex] != 0) {
+                // Use the known longest path and take the max
+                len = Math.max(len, longestPaths[connectingVertex]);
+            }
+            // Otherwise, recurse to find the longest path to the current vertex
+            else {
+                len = Math.max(len, longestPathTo(adjacencyList, connectingVertex, longestPaths));
+            }
+            // Add 1 for edge to current vertex
+            return len + 1;
+        }
     }
 }
