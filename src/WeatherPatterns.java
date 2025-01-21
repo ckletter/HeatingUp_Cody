@@ -19,7 +19,7 @@ public class WeatherPatterns {
      */
     public static int longestWarmingTrend(int[] temperatures) {
         int size = temperatures.length;
-        ArrayList<Integer>[] adjacencyList = new ArrayList<Integer>[size];
+        ArrayList<Integer>[] adjacencyList = new ArrayList[size];
         for (int i = 0; i < size; i++) {
             adjacencyList[i] = new ArrayList<Integer>();
         }
@@ -38,7 +38,10 @@ public class WeatherPatterns {
         // Loop through each temp and recurse to find the longest path to that temp
         for (int i = 0; i < size; i++) {
             int longestPathTo = longestPathTo(adjacencyList, i, longestPaths);
+            // Update the longest total path
+            longest = Math.max(longest, longestPathTo);
         }
+        return longest;
     }
     public static int longestPathTo(ArrayList<Integer>[] adjacencyList, int vertex, int[] longestPaths) {
         // Obtain the connections of the current vertex
@@ -54,8 +57,8 @@ public class WeatherPatterns {
             else {
                 len = Math.max(len, longestPathTo(adjacencyList, connectingVertex, longestPaths));
             }
-            // Add 1 for edge to current vertex
-            return len + 1;
         }
+        // Add 1 for edge to current vertex
+        return len + 1;
     }
 }

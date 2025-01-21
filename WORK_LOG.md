@@ -6,6 +6,7 @@ Name: Cody Kletter
 | Jan 15 | 1:15-1:45  |                                                                                                                                                                I was able to pass all the checks! I was dealing with a bug, but my issue came from breaking early in my for loop instead of writing 'continue.' |
 | Jan 15 | 4:30-5:00  |                                                                                                                                              I brainstormed for 30 minutes speedups to my solution that could lower the n^2 complexity, including arraylists and maps but I wasn't able to think of a solution. |
 | Jan 19 | 7:45-8:15  | I spent this time coding out the main function, creating my adjacency list in O(n^2) complexity. I also began creating my recursive method, using memoization for a speedup. I need to finish my recursive function and then code the logic in my main method for calling the recursive method for each vertex. |
+| Jan 21  | 1:50-2:20  |                                                    I spent this time finishing my main function which calls my recursive method and keeping track of the longest total path. I also continued by adding comments. I am running into an issue where my test efficient large doesn't run, so I will work on that. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
