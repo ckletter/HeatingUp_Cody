@@ -34,6 +34,7 @@ public class WeatherPatterns {
             }
         }
         int longest = 0;
+        // Create a map of path lengths for efficient lookups
         int[] longestPaths = new int[size];
         // Loop through each temp and recurse to find the longest path to that temp
         for (int i = 0; i < size; i++) {
@@ -56,6 +57,8 @@ public class WeatherPatterns {
             // Otherwise, recurse to find the longest path to the current vertex
             else {
                 len = Math.max(len, longestPathTo(adjacencyList, connectingVertex, longestPaths));
+                // Update the path length in our map of path lengths
+                longestPaths[connectingVertex] = len;
             }
         }
         // Add 1 for edge to current vertex
