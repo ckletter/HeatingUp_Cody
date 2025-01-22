@@ -38,31 +38,38 @@ public class WeatherPatterns {
         int[] longestPaths = new int[size];
         // Loop through each temp and recurse to find the longest path to that temp
         for (int i = 0; i < size; i++) {
-            int longestPathTo = longestPathTo(adjacencyList, i, longestPaths, 0);
-            if (longestPaths[i] == 0) {
-                longestPaths[i] = longestPathTo;
-            }
+            int longestPathTo = longestPathTo(adjacencyList, i, longestPaths);
+            // Update the global longest increasing trend
             longest = Math.max(longest, longestPathTo);
         }
         return longest;
     }
-    public static int longestPathTo(ArrayList<Integer>[] adjacencyList, int vertex, int[] longestPaths, int len) {
+
+    /**
+     * Given a vertex, finds the longest path to that vertex by recursively finding the longest paths to all
+     * the adjacent vertices
+     * @param adjacencyList The list of all adjacent vertices to the current vertex
+     * @param vertex The index of the current vertex
+     * @param longestPaths The map of known path lengths using memoization
+     * @return The length of the longest path to the current vertex
+     */
+    public static int longestPathTo(ArrayList<Integer>[] adjacencyList, int vertex, int[] longestPaths) {
+        // Check if the longest path to the connecting vertex is already known
+        if (longestPaths[vertex] != 0) {
+            return longestPaths[vertex];
+        }
+        int longestPath = 0;
         // Obtain the connections of the current vertex
         ArrayList<Integer> connections = adjacencyList[vertex];
         for (int connectingVertex : connections) {
-            // Check if the longest path to the connecting vertex is already known
-            if (longestPaths[connectingVertex] != 0) {
-                // Use the known longest path and take the max
-                len = Math.max(len, longestPaths[connectingVertex]);
-            }
-            // Otherwise, recurse to find the longest path to the current vertex
-            else {
-                len = Math.max(len, longestPathTo(adjacencyList, connectingVertex, longestPaths, len));
-                // Update the path length in our map of path lengths
-                longestPaths[connectingVertex] = len;
-            }
+            // Find the longest path to each adjacent vertex
+            int pathLength = longestPathTo(adjacencyList, connectingVertex, longestPaths);
+            // Update our total longest path length to the given vertex
+            longestPath = Math.max(longestPath, pathLength);
         }
-        // Add 1 for edge to current vertex
-        return len + 1;
+        // Add longest path to current vertex to our map, including step to move to current vertex
+        longestPaths[vertex] = longestPath + 1;
+        // Return longest path to current vertex
+        return longestPath + 1;
     }
 }
